@@ -48,7 +48,10 @@ For local development you will need two terminals open, one for the api-backend 
 
 ```bash
 # api-backend terminal 1
+
 cd server
+#by doing this, you db will have data, instead of empty and you have to mannually input it
+sequelize db:seed:all 
 nodemon app.js
 ```
 
