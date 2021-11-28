@@ -2,7 +2,7 @@ import React from 'react';
 
 const Success = () => {
     return(
-        <div>
+        <div style={{textAlign: 'center'}}>
             <h1>Thanks for your order!</h1>
             <p>
             We appreciate your business!

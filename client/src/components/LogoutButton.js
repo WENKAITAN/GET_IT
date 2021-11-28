@@ -9,7 +9,7 @@ const LogoutButton = ({history}) => {
     auth.signout().then(() => history.push('/'));
   }
   return (
-    auth.isAuthenticated && <button className="btn btn-primary" onClick={logout}>
+    (localStorage.id || auth.isAuthenticated) && <button className="btn btn-primary" onClick={logout}>
       Log Out
     </button>
   );

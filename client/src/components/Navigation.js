@@ -97,47 +97,6 @@ class Navigation extends Component {
           <div className="navbar-nav ml-auto action-buttons">
               <LoginButton />
               <LogoutButton />
-              {/* <Link to="/login" className="nav-link dropdown-toggle mr-4">Login</Link>
-              <Link to="/logout" className="nav-link dropdown-toggle mr-4">Logout</Link> */}
-                      {/* <div className="dropdown-menu action-form">
-                        <form action="/examples/actions/confirmation.php" method="post">
-                          <p className="hint-text">Sign in with your social media account</p>
-                          <div className="form-group social-btn clearfix">
-                            <Link to="" className="btn btn-secondary facebook-btn float-left"><i className="fa fa-facebook"></i> Facebook</Link>
-                            <Link to="" className="btn btn-secondary twitter-btn float-right"><i className="fa fa-twitter"></i> Twitter</Link>
-                          </div>
-                          <div className="or-seperator"><b>or</b></div>
-                          <div className="form-group">
-                            <input type="text" className="form-control" placeholder="Username" required="required" />
-                          </div>
-                          <div className="form-group">
-                            <input type="password" className="form-control" placeholder="Password" required="required" />
-                          </div>
-                          <input type="submit" className="btn btn-primary btn-block" value="Login" />
-                          <div className="text-center mt-2">
-                            <Link to="">Forgot Your password?</Link>
-                          </div>
-                        </form>
-                      </div> */}
-              {/* <Link to="/signup" className="btn btn-primary dropdown-toggle sign-up-btn">Sign up</Link> */}
-                {/* <div className="dropdown-menu action-form">
-                      <form action="/examples/actions/confirmation.php" method="post">
-                        <p className="hint-text">Fill in this form to create your account!</p>
-                        <div className="form-group">
-                          <input type="text" className="form-control" placeholder="Username" required="required" />
-                        </div>
-                        <div className="form-group">
-                          <input type="password" className="form-control" placeholder="Password" required="required" />
-                        </div>
-                        <div className="form-group">
-                          <input type="password" className="form-control" placeholder="Confirm Password" required="required" />
-                        </div>
-                        <div className="form-group">
-                          <label className="form-check-label"><input type="checkbox" required="required" /> I accept the <Link to="">Terms &amp; Conditions</Link></label>
-                        </div>
-                        <input type="submit" className="btn btn-primary btn-block" value="Sign up" />
-                      </form>
-                </div> */}
               <Link to="/cart" className="nav-link dropdown-toggle mr-4">Shopping bag {JSON.parse(localStorage.getItem('cart')) && (<span>({JSON.parse(localStorage.getItem('cart')).length})</span>)}</Link>
               <Profile />
           </div>

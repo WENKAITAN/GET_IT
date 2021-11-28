@@ -16,7 +16,7 @@ router.get('/' ,async(req, res) => {
 })
 
 //authenticated user can have access to its account
-router.get('/:uuid',passport.isAuthenticated(), async(req, res) => {
+router.get('/:uuid', async(req, res) => {
     const {uuid} = req.params;
     try{
         const user = await User.findOne({

@@ -36,6 +36,7 @@ const AuthProvider = ({ children }) => {
         return response.json();
       })
       .then((body) => {
+        localStorage.id = body.email
         setUser(body);
         return body;
       });
@@ -54,6 +55,8 @@ const AuthProvider = ({ children }) => {
       }
       return response.json();
     }).then((user) => {
+      localStorage.clear()
+      localStorage.id = user.email
       setUser(user)
       return user;
     })
@@ -74,6 +77,7 @@ const AuthProvider = ({ children }) => {
         return response.json();
       })
       .then((body) => {
+        localStorage.removeItem("id")
         setUser(false)
         return body;
       });
@@ -84,7 +88,7 @@ const AuthProvider = ({ children }) => {
       value={{
         authenticate,
         signout,
-        isAuthenticated: user ? true : false,
+        isAuthenticated: user&&localStorage.getItem("id") ? true : false,
         signup,
         user
       }}
