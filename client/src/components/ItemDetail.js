@@ -13,12 +13,16 @@ class ItemDetail extends Component {
 
     handleSubmit = (event,id) => {
         event.preventDefault();
-        const {quantity, size} = this.state;
+        const {quantity, size, item} = this.state;
         // console.log(quantity, size);
+        const imageLink = item.imageLink ? item.imageLink : null;
         const itemInfo = {
             id,
             quantity,
-            size
+            size,
+            imageLink,
+            name: item.name,
+            price: item.price
         }
         this.props.addToCart(itemInfo)
         this.setState({

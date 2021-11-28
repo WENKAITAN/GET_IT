@@ -26,6 +26,7 @@ function LogIn(props){
         const { email, password } = values
         auth.authenticate(email, password)
         .then((user) => {
+          localStorage.setItem("email", JSON.stringify(email))
           setRedirect(true)
         })
         .catch((err) => {

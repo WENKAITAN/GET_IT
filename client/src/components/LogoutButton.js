@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 const LogoutButton = ({history}) => {
   const auth = useContext(AuthContext);
   const logout = () => {
+    localStorage.removeItem("email")
     auth.signout().then(() => history.push('/'));
   }
   return (

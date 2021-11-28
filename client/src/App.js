@@ -16,7 +16,8 @@ import Signup from './components/Signup';
 import Cart from './components/Cart';
 import Account from './components/Account';
 import PrivateRoute from './components/PrivateRoute';
-
+import Success from './components/Success';
+import Cancel from './components/Cancel';
 class App extends React.Component {
 
   state = {
@@ -103,6 +104,8 @@ class App extends React.Component {
               <PrivateRoute path="/account" component={Account}/>
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+              <Route path="/success" component={Success} />
+              <Route path="/cancel" component={Cancel} />
               {/* <Route exact path="/aboutus" component={AboutUsPage} /> */}
               <Route component={NotFoundError}/>
             </Switch>

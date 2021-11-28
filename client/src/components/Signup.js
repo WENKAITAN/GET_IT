@@ -25,6 +25,7 @@ function Signup(props){
         const { email, password } = values;
         auth.signup(email, password)
           .then((user) => {
+            localStorage.setItem("email", JSON.stringify(email))
             setRedirect(true)
           })
           .catch((err) => {

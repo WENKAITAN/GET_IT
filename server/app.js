@@ -28,11 +28,42 @@ maxAge: 3600
 };
 app.use(cors(issue2options));
 // app.use(flash())
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
 app.use('/', index);
 app.use('/user', user);
 app.use('/product', product);
 app.use('/auth', auth);
+
+app.post('/create-checkout-session', async (req, res) => {
+  const {items, email}  = req.body;
+  // console.log(items);
+  let products = [];
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    let product = {
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+        },
+        unit_amount: item.price*100,
+      },
+      quantity: parseInt(item.quantity),
+    }
+    products.push(product)
+  }
+  const session = await stripe.checkout.sessions.create({
+    line_items: products,
+    customer_email: email,
+    mode: 'payment',
+    success_url: 'http://localhost:3000/success',
+    cancel_url: 'http://localhost:3000/cancel',
+  });
+
+  res.json({url: session.url});
+});
+
 
 // error handler
 app.use(function(err, req, res, next) {
