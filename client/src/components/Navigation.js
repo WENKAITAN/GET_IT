@@ -138,7 +138,7 @@ class Navigation extends Component {
                         <input type="submit" className="btn btn-primary btn-block" value="Sign up" />
                       </form>
                 </div> */}
-              <Link to="/cart" className="nav-link dropdown-toggle mr-4">Shopping bag {Object.keys(this.props.cart).length > 0 && (<span>({Object.keys(this.props.cart).length})</span>)}</Link>
+              <Link to="/cart" className="nav-link dropdown-toggle mr-4">Shopping bag {JSON.parse(localStorage.getItem('cart')) && (<span>({JSON.parse(localStorage.getItem('cart')).length})</span>)}</Link>
               <Profile />
           </div>
         </div>

@@ -20,49 +20,29 @@ import PrivateRoute from './components/PrivateRoute';
 class App extends React.Component {
 
   state = {
-    cart: {},
+    cart: [],
     items: {}
   }
 
   addToCart = (item) => {
-    let obj = {}
-    let key = `${item.id}-${item.size}-${item.quantity}`
-    obj[key] = item
-// {
-//   id+sz: {
-//   id: "11".
-//   sz: "m",
-//   quantity: 1
-// }
-// }
-    //if the item is already in cart, we just add the new quantity to the existing item
-    if(key in this.state.cart){ 
-      obj[key].quantity = (parseInt(obj[key].quantity) + parseInt(this.state.cart[key].quantity)).toString();
-      this.setState({
-        ...this.state,
-        cart: {
-          ...this.state.cart,
-          ...obj
-        }
-      })
-    }else{
-      // otherwise, insert it into obj
-      this.setState({
-        ...this.state,
-        cart: {
-          ...this.state.cart,
-          ...obj
-        }
-      })
-    }
-
+    this.setState({
+      cart: [...this.state.cart, item]
+    })
+    let history = JSON.parse(localStorage.getItem("cart")) || [];
+    history.push(item)
+    console.log(history)
+    localStorage.setItem("cart", JSON.stringify(history))
   }
 
+
   deleteItems = (id) => {
+    console.log(id)
     this.setState({
       ...this.state,
       cart: this.state.cart.filter(item => item.id !== id)
     })
+    let history = JSON.parse(localStorage.getItem("cart"));
+    localStorage.setItem("cart", JSON.stringify(history.filter(item => item.id !== id)))
   }
   updateItem = (id, quantity) => {
     console.log(id, quantity)
@@ -93,7 +73,6 @@ class App extends React.Component {
 
   render() {
     const { items, cart } = this.state;
-    console.log(cart)
     return (
           <Router>
             <Navigation items={items} cart={cart}/>
