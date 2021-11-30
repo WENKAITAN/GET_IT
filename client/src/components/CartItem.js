@@ -16,13 +16,10 @@ class CartItem extends React.Component {
                 quantity: e.target.value
             }
         })
-
+        let key = `${this.props.itemInfo.id}-${this.props.itemInfo.size}`;
         let history = JSON.parse(localStorage.getItem("cart"));
-        let result = history.find(arr => arr.id === this.state.item.product_id);
-        console.log(result)
-        result.quantity = e.target.value;
-        history = history.filter(arr => arr.id !== this.state.item.product_id)
-        localStorage.setItem("cart", JSON.stringify([...history, result]))
+        history[key].quantity = e.target.value;
+        localStorage.setItem("cart", JSON.stringify(history))
     }
 
     updateSize = (e) => {
@@ -32,12 +29,10 @@ class CartItem extends React.Component {
                 size: e.target.value.toString(),
             }
         })
+        let key = `${this.props.itemInfo.id}-${this.props.itemInfo.size}`;
         let history = JSON.parse(localStorage.getItem("cart"));
-        let result = history.find(arr => arr.id === this.state.item.product_id);
-        console.log(result)
-        result.size = e.target.value;
-        history = history.filter(arr => arr.id !== this.state.item.product_id)
-        localStorage.setItem("cart", JSON.stringify([...history, result]))
+        history[key].size = e.target.value;
+        localStorage.setItem("cart", JSON.stringify(history))
     }
 
     componentDidMount(){
@@ -80,7 +75,7 @@ class CartItem extends React.Component {
                 </Col>
                 
                 <Col xs={6} md={4}>
-                    <Card.Text style={{fontSize:'20px', fontWeight:'600',float:'right',marginTop: '50px'}}>{item.price}</Card.Text>
+                    <Card.Text style={{fontSize:'20px', fontWeight:'600',float:'right',marginTop: '50px'}}>{item.price * item.quantity}</Card.Text>
                 </Col>
             
             </Row>

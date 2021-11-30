@@ -14,6 +14,7 @@ class Navigation extends Component {
     this.setState({query})
   }
 
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { query,items } = this.state;

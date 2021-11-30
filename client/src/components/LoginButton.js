@@ -5,7 +5,7 @@ const LoginButton = () => {
   const auth = useContext(AuthContext);
   const { isAuthenticated } = auth;
 
-  return ((!localStorage.id && !isAuthenticated) && <Link className="btn btn-primary" to="/login">Log In</Link>);
+  return ((!localStorage.id && !isAuthenticated) && <Link className="btn btn-primary" to="/login" >Log In</Link>);
 };
 
 export default LoginButton;

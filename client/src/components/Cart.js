@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, Row, Col, Card, Button} from 'react-bootstrap';
 import CartItem from "./CartItem";
-function Cart ( {items, cart, itemdelete, updateQuantity} ) {
+function Cart ( {itemdelete, updateQuantity} ) {
     
     let bags = JSON.parse(localStorage.getItem("cart"));
     const removeItem = (id) =>{
@@ -11,15 +11,21 @@ function Cart ( {items, cart, itemdelete, updateQuantity} ) {
         e.preventDefault();
         let items = JSON.parse(localStorage.getItem("cart"));
         let email = JSON.parse(localStorage.getItem("email"));
-        const res = await fetch("http://localhost:5000/create-checkout-session", {
+        let line_items = [];
+        Object.keys(items).forEach((key) => {
+            const item = items[key];
+            line_items.push(item);
+        })
+        fetch("http://localhost:5000/create-checkout-session", {
             method: 'POST',
             headers: {
               "Content-Type": 'application/json'
             },
-            body: JSON.stringify({items, email})
+            body: JSON.stringify({line_items, email})
+          }).then(res => res.json())
+          .then(body => {
+            window.location.href = body.url;
           })
-        const body = await res.json();
-        window.location.href = body.url;
     }
     return(
         <Container>
@@ -48,13 +54,6 @@ function Cart ( {items, cart, itemdelete, updateQuantity} ) {
                 
                 </Card.Body>
             </Card> 
-                
-            <Card body style={{ width: '100%' }}>
-                <div style={{float:'right'}}>
-
-                <Card.Text style={{textAlign:'right',marginTop:'45px'}}> SubTotal</Card.Text>
-                </div>
-            </Card>
             <Card body style={{ width: '100%' }}>
                 {/* <Card.Text style={{textAlign:'right', fontSize:'30px', fontWeight:'600' }}>${totalAmount}</Card.Text> */}
                 <Button onClick={(e) => checkout(e)}variant="secondary" size="lg" type="submit" style={{background:'#000000',color:'#FFFFFF', float:'right' }}>

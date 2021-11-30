@@ -6,7 +6,9 @@ const LogoutButton = ({history}) => {
   const auth = useContext(AuthContext);
   const logout = () => {
     localStorage.removeItem("email")
+    
     auth.signout().then(() => history.push('/'));
+
   }
   return (
     (localStorage.id || auth.isAuthenticated) && <button className="btn btn-primary" onClick={logout}>

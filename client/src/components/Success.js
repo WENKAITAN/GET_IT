@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Success = () => {
+    useEffect(() => {
+        if(window.location.href.includes('success')) { localStorage.removeItem('cart') }
+    })
     return(
         <div style={{textAlign: 'center'}}>
             <h1>Thanks for your order!</h1>

@@ -39,11 +39,11 @@ app.use('/product', product);
 app.use('/auth', auth);
 
 app.post('/create-checkout-session', async (req, res) => {
-  const {items, email}  = req.body;
-  // console.log(items);
+  const {line_items, email}  = req.body;
+  // console.log(line_items);
   let products = [];
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+  for (let i = 0; i < line_items.length; i++) {
+    const item = line_items[i];
     let product = {
       price_data: {
         currency: 'usd',
