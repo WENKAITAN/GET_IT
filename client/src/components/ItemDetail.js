@@ -18,7 +18,7 @@ class ItemDetail extends Component {
         const imageLink = item.imageLink ? item.imageLink : null;
         const itemInfo = {
             id,
-            quantity,
+            quantity: parseInt(quantity),
             size,
             imageLink,
             name: item.name,

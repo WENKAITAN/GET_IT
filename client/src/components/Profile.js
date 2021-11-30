@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from 'react-router-dom'
 
@@ -7,12 +7,11 @@ import { Link } from 'react-router-dom'
 const Profile = () => {
   const auth = useContext(AuthContext);
   const { user, isAuthenticated } = auth;
-
   let name = ""
   if(user.email){
     name = user.email
   }else{
-    name = localStorage.getItem("id") ? localStorage.getItem("id") : null
+    name = localStorage.getItem('id');
   }
   return (
     (localStorage.id || isAuthenticated) && (

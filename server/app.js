@@ -2,16 +2,19 @@ const { sequelize, User, Product, Order } = require('./models')
 const db = require('./models');
 const express = require('express');
 const expressSession = require('express-session');
-// const flash = require('connect-flash');
+const flash = require('connect-flash');
 const passport = require('./middlewares/authentication');
 const index = require('./routes/index');
 const user = require('./routes/user');
 const product = require('./routes/product');
 const auth = require('./auth');
 const cors = require('cors')
+var morgan = require('morgan')
 const app = express();
 
 app.use(express.json());
+app.use(flash());
+app.use(morgan('combined'))
 // setup passport and session cookies
 app.use(expressSession({
     secret: "keyboard_cat",
@@ -71,7 +74,8 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     return res.json({
         message: err.message,
-        error: req.app.get('env') === 'development' ? err : {}
+        error: req.app.get('env') === 'development' ? err : {},
+        flashMessage: req.flash("error")
     })
   });
 

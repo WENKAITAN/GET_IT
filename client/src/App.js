@@ -21,40 +21,52 @@ import Cancel from './components/Cancel';
 class App extends React.Component {
 
   state = {
-    cart: [],
+    cart: {},
     items: {}
   }
 
   addToCart = (item) => {
-    this.setState({
-      cart: [...this.state.cart, item]
-    })
-    let history = JSON.parse(localStorage.getItem("cart")) || [];
-    history.push(item)
-    console.log(history)
-    localStorage.setItem("cart", JSON.stringify(history))
+    let key = `${item.id}-${item.size}`;
+    // if the item is already in the cart, just update the quantity
+    if(key in this.state.cart){
+      this.setState({
+        cart: {
+          ...this.state.cart,
+          [key]: {
+            ...this.state.cart[key],
+            quantity: this.state.cart[key].quantity + item.quantity
+          }
+        }
+      })
+      let history = JSON.parse(localStorage.getItem("cart")) || {};
+      history[key].quantity += item.quantity;
+      localStorage.setItem("cart", JSON.stringify(history))
+    }else{
+      //if not, create a new Object
+      this.setState({
+        cart: {
+          ...this.state.cart,
+          [key]: item
+        }
+      })
+      let history = JSON.parse(localStorage.getItem("cart")) || {};
+      history[key] = item
+      localStorage.setItem("cart", JSON.stringify(history))
+    }
+
   }
 
 
   deleteItems = (id) => {
     console.log(id)
-    this.setState({
-      ...this.state,
-      cart: this.state.cart.filter(item => item.id !== id)
+    this.setState((prevState) => {
+      const state = {...prevState};
+      state.cart[id] = undefined;
+      return state;
     })
-    let history = JSON.parse(localStorage.getItem("cart"));
-    localStorage.setItem("cart", JSON.stringify(history.filter(item => item.id !== id)))
-  }
-  updateItem = (id, quantity) => {
-    console.log(id, quantity)
-    let changedItem = this.state.cart.filter(item => item.id === id);
-    // console.log(changedItem)
-    // changedItem[0]["quantity"] = quantity;
-    // console.log(changedItem)
-    this.setState({
-      ...this.state,
-      cart: [...this.state.cart.filter(item => item.id !== id), {...changedItem}]
-    })
+    let history = JSON.parse(localStorage.getItem("cart"))
+    history[id] = undefined;
+    localStorage.setItem("cart", JSON.stringify(history))
   }
   componentDidMount(){
     fetch("http://localhost:5000/product")

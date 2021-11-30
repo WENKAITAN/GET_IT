@@ -45,6 +45,7 @@ class Navigation extends Component {
       })
     })
   }
+  
   render() {
     
     return (
@@ -97,7 +98,7 @@ class Navigation extends Component {
           <div className="navbar-nav ml-auto action-buttons">
               <LoginButton />
               <LogoutButton />
-              <Link to="/cart" className="nav-link dropdown-toggle mr-4">Shopping bag {JSON.parse(localStorage.getItem('cart')) && (<span>({JSON.parse(localStorage.getItem('cart')).length})</span>)}</Link>
+              <Link to="/cart" className="nav-link dropdown-toggle mr-4">Shopping bag {JSON.parse(localStorage.getItem('cart')) && (<span>({Object.keys(JSON.parse(localStorage.getItem('cart'))).length})</span>)}</Link>
               <Profile />
           </div>
         </div>

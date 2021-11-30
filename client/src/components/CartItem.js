@@ -5,7 +5,7 @@ class CartItem extends React.Component {
         item: {}
     }
     removeItem = (e) => {
-        this.props.deleteItem(this.props.itemInfo.id);
+        this.props.deleteItem(`${this.props.itemInfo.id}-${this.props.itemInfo.size}`);
     }
 
 

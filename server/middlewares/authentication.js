@@ -44,6 +44,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((user_id, done) => {
+  console.log(user_id);
   User.findByPk(user_id)
     .then((user) => {
       if (!user) {
@@ -54,7 +55,10 @@ passport.deserializeUser((user_id, done) => {
       done(null, user);
       return;
     })
-    .catch(err => done(err, null));
+    .catch(err => {
+      console.log(err);
+      done(err, null)
+    });
 });
 
 passport.isAuthenticated = () =>
