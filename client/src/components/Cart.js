@@ -28,20 +28,21 @@ function Cart ( {itemdelete, updateQuantity} ) {
           })
     }
     return(
-        <Container>
+        <Container ClassName="carttesting">
             
             <Row className="horizontal">
                 
             <Card style={{ width: '100%' }}>
                 <Card.Body>
-                    <Row>
-                        <Col xs={6} md={4}>
+                    <Row className="all-description">
+                        <Col className="description" xs={6} md={4}>
                             <Card.Title style={{fontSize:'30px', fontWeight:'600'}}>Description</Card.Title>
                         </Col>
-                        <Col xs={6} md={4}>
+
+                        <Col  className="quantity" xs={6} md={4}>
                             <Card.Title style={{fontSize:'30px', fontWeight:'600', textAlign:'center'}}>Quantity</Card.Title>
                         </Col>
-                        <Col xs={6} md={4}>
+                        <Col className="price" xs={6} md={4}>
                             <Card.Title style={{fontSize:'30px', fontWeight:'600',float:'right'}}>price</Card.Title>
                         </Col>
                     </Row>
