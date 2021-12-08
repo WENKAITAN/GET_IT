@@ -11,7 +11,13 @@ const auth = require('./auth');
 const cors = require('cors')
 var morgan = require('morgan')
 const app = express();
-
+const port = process.env.PORT || 8000;
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static("build"));
+  app.get("*", (req, res) => {
+    req.sendFile(path.resolve(__dirname, "build", "index.html"))
+  })
+}
 app.use(express.json());
 app.use(flash());
 app.use(morgan('combined'))
@@ -79,7 +85,7 @@ app.use(function(err, req, res, next) {
     })
   });
 
-app.listen({port:5000}, async() => {
+app.listen(port, async() => {
     console.log('Server up on http://localhost:5000');
     await sequelize.authenticate();
     console.log("Database connected")
