@@ -67,18 +67,7 @@ function LogIn(props){
                 />
             </div>
 
-            {/* <div className="form-group">
-                <div className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                    <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                </div>
-            </div> */}
-
             <button type="submit" className="btn btn-primary btn-block">Sign In</button>
-            {/* <p className="forgot-password text-right">
-                Forgot <a href="#">password?</a>
-            </p> */}
-
             <Link to="/signup">Create Account</Link>
         </form>
     );

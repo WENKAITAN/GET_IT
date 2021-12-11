@@ -37,7 +37,7 @@ class Navigation extends Component {
     //redirect to /search pass filterItems, then display items on /search
   }
   componentDidMount(){
-    fetch("http://localhost:5000/product")
+    fetch("/product")
     .then(res => res.json())
     .then(products => {
       this.setState({

@@ -16,7 +16,7 @@ function Cart ( {itemdelete, updateQuantity} ) {
             const item = items[key];
             line_items.push(item);
         })
-        fetch("http://localhost:5000/create-checkout-session", {
+        fetch("/create-checkout-session", {
             method: 'POST',
             headers: {
               "Content-Type": 'application/json'

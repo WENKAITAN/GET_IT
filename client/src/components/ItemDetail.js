@@ -39,7 +39,7 @@ class ItemDetail extends Component {
 
     componentDidMount(){
         const { id } = this.props.match.params;
-        fetch(`http://localhost:5000/product/${id}`)
+        fetch(`/product/${id}`)
         .then(res => res.json())
         .then(product => {
             this.setState({
