@@ -14,11 +14,20 @@ const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 8000;
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    req.sendFile(path.resolve(__dirname, "build", "index.html"))
-  })
+// if(process.env.NODE_ENV === 'production'){
+//   app.use(express.static("build"));
+//   app.get("*", (req, res) => {
+//     req.sendFile(path.resolve(__dirname, "build", "index.html"))
+//   })
+// }
+// for production use, we serve the static react build folder
+if(process.env.NODE_ENV==='production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+
+  // all unknown routes should be handed to our react app
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 }
 app.use(express.json());
 app.use(flash());
