@@ -10,6 +10,8 @@ const product = require('./server/routes/product');
 const auth = require('./server/auth');
 const cors = require('cors')
 var morgan = require('morgan')
+const path = require('path');
+
 const app = express();
 const port = process.env.PORT || 8000;
 if(process.env.NODE_ENV === 'production'){
@@ -84,8 +86,8 @@ app.use(function(err, req, res, next) {
     })
   });
 
-app.listen(port, async() => {
-    console.log('Server up on http://localhost:5000');
+app.listen(process.env.PORT, async() => {
+    console.log(`Server up on http://localhost:${process.env.PORT}`);
     await sequelize.authenticate();
     console.log("Database connected")
 })
