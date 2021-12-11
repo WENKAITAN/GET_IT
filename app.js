@@ -81,7 +81,6 @@ app.use(function(err, req, res, next) {
     return res.json({
         message: err.message,
         error: req.app.get('env') === 'development' ? err : {},
-        flashMessage: req.flash("error")
     })
   });
 
