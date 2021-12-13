@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(false)
 
   useEffect(() => {
-    fetch('/auth/login')
+    fetch('/api/auth/login')
       .then(response => {
         if(!response.ok) {
           throw new Error('Unauthenticated')
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   }, [])
 
   const authenticate = (email, password) => {
-    return fetch('/auth/login', {
+    return fetch('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const signup = (email, password) => {
-    return fetch('/auth/signup', {
+    return fetch('/api/auth/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
   }
 
   const signout = () => {
-    return fetch('/auth/logout', {
+    return fetch('/api/auth/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -50,10 +50,10 @@ app.use(cors(issue2options));
 // app.use(flash())
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
-app.use('/', index);
-app.use('/user', user);
-app.use('/product', product);
-app.use('/auth', auth);
+app.use('/api', index);
+app.use('/api/user', user);
+app.use('/api/product', product);
+app.use('/api/auth', auth);
 
 app.post('/create-checkout-session', async (req, res) => {
   const {line_items, email}  = req.body;
