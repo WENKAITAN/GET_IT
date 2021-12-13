@@ -55,7 +55,7 @@ app.use('/api/user', user);
 app.use('/api/product', product);
 app.use('/api/auth', auth);
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/api/create-checkout-session', async (req, res) => {
   const {line_items, email}  = req.body;
   // console.log(line_items);
   let products = [];
