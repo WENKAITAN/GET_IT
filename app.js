@@ -41,13 +41,7 @@ app.use(expressSession({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-const issue2options = {
-origin: "*",
-methods: ["GET","POST","PATCH","PUT"],
-credentials: true,
-maxAge: 3600
-};
-app.use(cors(issue2options));
+
 
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
