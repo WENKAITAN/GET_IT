@@ -29,8 +29,10 @@ if(process.env.NODE_ENV==='production') {
   });
 }
 app.use(express.json());
+// add http request logging to help us debug and audit app use
+const logFormat = process.env.NODE_ENV==='production' ? 'combined' : 'dev';
+app.use(morgan(logFormat));
 
-app.use(morgan('combined'))
 // setup passport and session cookies
 app.use(expressSession({
     secret: "keyboard_cat",
@@ -39,14 +41,14 @@ app.use(expressSession({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
-// const issue2options = {
-// origin: "http://localhost:3000",
-// methods: ["GET","POST","PATCH","PUT"],
-// credentials: true,
-// maxAge: 3600
-// };
-// app.use(cors(issue2options));
-// app.use(flash())
+const issue2options = {
+origin: "*",
+methods: ["GET","POST","PATCH","PUT"],
+credentials: true,
+maxAge: 3600
+};
+app.use(cors(issue2options));
+
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc')
 
 app.use('/api/', index);

@@ -37,7 +37,7 @@ class CartItem extends React.Component {
     }
 
     componentDidMount(){
-        fetch(`/product/${this.props.itemInfo.id}`)
+        fetch(`/api/product/${this.props.itemInfo.id}`)
         .then(res => res.json())
         .then(item => {
             this.setState({
