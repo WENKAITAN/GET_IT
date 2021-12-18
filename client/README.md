@@ -19,7 +19,7 @@ You can install any react library you want to use in this project. The dependenc
 
 ## Making call to your API backend
 
-This client runs on port `3000` by default and the API server should be configured to run on port `8080`.
+This client runs on port `3000` by default and the API server should be configured to run on port `8000`.
 
 The create-react-app proxy has been **pre-configured** for these ports, meaning in your code you can make API calls without having to hardcode the port number. For example:
 
