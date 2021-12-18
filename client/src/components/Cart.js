@@ -16,7 +16,7 @@ function Cart ( {itemdelete, updateQuantity} ) {
             const item = items[key];
             line_items.push(item);
         })
-        fetch("/api/create-checkout-session", {
+        fetch("/create-checkout-session", {
             method: 'POST',
             headers: {
               "Content-Type": 'application/json'

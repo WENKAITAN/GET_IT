@@ -69,7 +69,7 @@ class App extends React.Component {
     localStorage.setItem("cart", JSON.stringify(history))
   }
   componentDidMount(){
-    fetch("/api/product")
+    fetch("/product")
     .then(res => res.json())
     .then(products => {
       const items = {}

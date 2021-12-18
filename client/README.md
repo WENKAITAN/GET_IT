@@ -24,7 +24,7 @@ This client runs on port `3000` by default and the API server should be configur
 The create-react-app proxy has been **pre-configured** for these ports, meaning in your code you can make API calls without having to hardcode the port number. For example:
 
 ```js
-fetch('/api/users/42', { ... })
+fetch('""/users/42', { ... })
     ...
 ```
 

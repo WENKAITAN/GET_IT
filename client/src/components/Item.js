@@ -6,7 +6,7 @@ class Item extends Component {
         const { id, items } = this.props;
         const item = items[id];
         return (
-            <Link to={`/api/products/${id}`} style={{textDecoration:"none"}} > 
+            <Link to={`/products/${id}`} style={{textDecoration:"none"}} > 
                 <Card style={{color: "black"}} className="grow h-100" >
                         <Image src={item['imageLink']} fluid />
                         <Card.Body>
